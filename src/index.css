@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   GLOBAL DESIGN SYSTEM - EliteFC Academy
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors */
+  --clr-bg: #ffffff;
+  --clr-surface: #f8fafc;
+  --clr-surface-2: #f1f5f9;
+  --clr-border: rgba(0,0,0,0.08);
+  --clr-border-hover: rgba(0,0,0,0.15);
+
+  --clr-accent: #e11d48; /* Premium Rose Red */
+  --clr-accent-dim: rgba(225, 29, 72, 0.08);
+  --clr-accent-mid: rgba(225, 29, 72, 0.25);
+  --clr-gold: #f59e0b;
+  --clr-red: #e11d48;
+
+  --clr-text: #0f172a;
+  --clr-text-muted: #64748b;
+  --clr-text-soft: #475569;
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 40px rgba(0,0,0,0.05);
+  --shadow-glow: 0 0 40px rgba(225, 29, 72, 0.15);
+  --shadow-gold: 0 0 30px rgba(245, 158, 11, 0.2);
+
+  /* Transitions */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul { list-style: none; }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--clr-bg); }
+::-webkit-scrollbar-thumb { background: #1e2d3d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-accent); }
+
+/* =============================================
+   UTILITY CLASSES
+   ============================================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--clr-accent);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--clr-text);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--clr-text-soft);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--clr-accent);
+  color: #000;
+}
+.btn-primary:hover {
+  background: #00ff88;
+  box-shadow: 0 0 30px rgba(0, 230, 118, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--clr-text);
+  border: 1.5px solid var(--clr-border-hover);
+}
+.btn-outline:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #f5c842, #ffaa00);
+  color: #000;
+}
+.btn-gold:hover {
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-2px);
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  border-radius: 10px;
+}
+
+/* =============================================
+   CARD BASE
+   ============================================= */
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.card:hover {
+  border-color: var(--clr-border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+/* =============================================
+   BADGE
+   ============================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+}
+.badge-green { background: var(--clr-accent-dim); color: var(--clr-accent); }
+.badge-gold { background: rgba(245, 200, 66, 0.12); color: var(--clr-gold); }
+.badge-red { background: rgba(255, 61, 88, 0.12); color: var(--clr-red); }
+.badge-gray { background: rgba(255,255,255,0.05); color: var(--clr-text-muted); }
+
+/* =============================================
+   PAGE TRANSITIONS
+   ============================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,230,118,0.2); }
+  50% { box-shadow: 0 0 40px rgba(0,230,118,0.4); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
+}
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+
+/* Page wrapper */
+.page {
+  animation: fadeIn 0.4s ease;
+  min-height: 100vh;
+}

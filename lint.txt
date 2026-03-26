@@ -1,0 +1,12 @@
+﻿
+C:\Users\DUTA\Downloads\football\src\pages\Home.jsx
+    6:11  error  'Video' is not defined            no-undef
+  171:31  error  'Icon' is defined but never used  no-unused-vars
+  200:36  error  'Icon' is defined but never used  no-unused-vars
+
+C:\Users\DUTA\Downloads\football\src\pages\Programs.jsx
+  266:33  error  'isSubscribed' is defined but never used                                               no-unused-vars
+  267:91  error  'color' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 5 problems (5 errors, 0 warnings)
+
