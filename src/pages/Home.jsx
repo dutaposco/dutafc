@@ -142,26 +142,7 @@ export default function Home({ isSubscribed, onSubscribe }) {
               </div>
             </div>
 
-            {/* Floating badges */}
-            <div className="absolute top-[-20px] right-[-20px] bg-surface-2 border border-white/10 p-4 rounded-2xl shadow-card flex items-center gap-4 animate-float delay-500">
-              <div className="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold">
-                <Trophy size={20} />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-black leading-none">300+</span>
-                <span className="text-[10px] text-muted uppercase font-bold tracking-widest">Training Videos</span>
-              </div>
-            </div>
 
-            <div className="absolute bottom-10 left-[-40px] bg-surface-2 border border-white/10 p-4 rounded-2xl shadow-card flex items-center gap-4 animate-float delay-700">
-              <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center text-accent">
-                <Star size={20} fill="currentColor" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-black leading-none">4.9/5</span>
-                <span className="text-[10px] text-muted uppercase font-bold tracking-widest">Member Rating</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
