@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Lock, Play, Clock, Star, ChevronRight, Filter, Search, Zap } from 'lucide-react'
-
-const categories = ['All', 'Dribbling', 'Finishing', 'Passing', 'Defending', 'Fitness', 'Tactics']
+import { Lock, Play, Clock, Star, ChevronRight, Zap } from 'lucide-react'
 
 const programs = [
   {
@@ -37,22 +34,7 @@ const programs = [
     color: '#3b82f6',
     dimColor: 'rgba(59, 130, 246, 0.1)'
   },
-  {
-    id: 'passing-vision',
-    title: 'Passing & Vision Training',
-    coach: 'Coach Silva',
-    category: 'Passing',
-    level: 'Beginner',
-    duration: '3h 10min',
-    videos: 10,
-    rating: 4.7,
-    reviews: 265,
-    emoji: '🎯',
-    description: 'Develop laser-accurate passing and learn to read the game like a midfielder.',
-    isPro: false,
-    color: '#3b82f6',
-    dimColor: 'rgba(59, 130, 246, 0.1)'
-  },
+
   {
     id: 'defending-bible',
     title: 'The Defending Bible',
@@ -117,125 +99,26 @@ const programs = [
     color: '#e91e96',
     dimColor: 'rgba(233, 30, 150, 0.1)'
   },
-  {
-    id: 'youth-basics',
-    title: 'Youth Player Fundamentals',
-    coach: 'Coach Torres',
-    category: 'Dribbling',
-    level: 'Beginner',
-    duration: '2h 20min',
-    videos: 6,
-    rating: 4.7,
-    reviews: 89,
-    emoji: '⭐',
-    description: 'Perfect intro for young players — touch, control, and first-step basics.',
-    isPro: false,
-    color: '#00e676',
-    dimColor: 'rgba(0, 230, 118, 0.1)'
-  },
+
 ]
 
-export default function Programs({ isSubscribed }) {
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [searchTerm, setSearchTerm] = useState('')
-
-  const filtered = programs.filter(p => {
-    const matchCat = activeCategory === 'All' || p.category === activeCategory
-    const matchSearch = p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.coach.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchCat && matchSearch
-  })
-
-  const freePrograms = filtered.filter(p => !p.isPro)
-  const proPrograms = filtered.filter(p => p.isPro)
+export default function Programs({ isSubscribed, onSubscribe }) {
 
   return (
     <main className="min-h-screen bg-bg pt-32 pb-20 animate-fadeIn">
-      {/* Header Section */}
-      <section className="relative overflow-hidden mb-12">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-8 i- h-[2px] bg-accent" />
-            <span className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">Training Library</span>
-          </div>
-          <h1 className="font-heading text-4xl md:text-6xl font-black mb-6">
-            All <span className="text-accent">Training Programs</span>
-          </h1>
-          <p className="text-lg text-soft leading-relaxed max-w-[600px] mb-12">
-            {isSubscribed
-              ? 'You have full access to all programs. Keep grinding! 💪'
-              : 'Subscribe to unlock the full library — 300+ videos across all skill areas.'}
-          </p>
-
-          {/* Search & Filter Toolbar */}
-          <div className="flex flex-col lg:flex-row items-center gap-6 p-4 bg-surface/50 backdrop-blur-md rounded-3xl border border-white/5">
-            <div className="relative w-full lg:w-[400px]">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={18} />
-              <input
-                type="text"
-                placeholder="Search programs or coaches..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-surface-2 border border-white/5 rounded-2xl text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
-                id="programs-search-input"
-              />
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-2">
-              {categories.map(cat => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-accent text-black shadow-glow' : 'bg-surface-2 text-muted hover:text-white hover:bg-white/5'}`}
-                  id={`cat-${cat.toLowerCase()}`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <div className="container mx-auto px-6">
-        {/* Free Programs */}
-        {freePrograms.length > 0 && (
-          <div className="mb-20">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">FREE</span>
-              <h2 className="font-heading text-2xl font-black uppercase tracking-tight">Free Programs</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {freePrograms.map(program => (
-                <ProgramCard key={program.id} program={program} isSubscribed={isSubscribed} locked={false} />
+        {programs.length > 0 && (
+          <div className="mb-20 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {programs.map(program => (
+                <ProgramCard key={program.id} program={program} isSubscribed={isSubscribed} locked={!isSubscribed} onSubscribe={onSubscribe} />
               ))}
             </div>
           </div>
         )}
 
-        {/* Pro Programs */}
-        {proPrograms.length > 0 && (
-          <div className="mb-20">
-            <div className="flex flex-wrap items-center gap-4 mb-8">
-              <span className="px-3 py-1 bg-gold/10 text-gold rounded-full text-[10px] font-black uppercase tracking-widest border border-gold/20">⚡ PRO</span>
-              <h2 className="font-heading text-2xl font-black uppercase tracking-tight">Pro Programs</h2>
-              {!isSubscribed && (
-                <span className="flex items-center gap-2 text-xs font-bold text-muted uppercase tracking-wider ml-auto">
-                  <Lock size={14} className="text-gold" />
-                  Requires subscription
-                </span>
-              )}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {proPrograms.map(program => (
-                <ProgramCard key={program.id} program={program} isSubscribed={isSubscribed} locked={!isSubscribed && program.isPro} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {filtered.length === 0 && (
+        {programs.length === 0 && (
           <div className="py-20 text-center bg-surface/30 rounded-[3rem] border border-dashed border-white/10">
             <div className="text-4xl mb-4">🔍</div>
             <h3 className="font-heading text-2xl font-black mb-2">No programs found</h3>
@@ -245,16 +128,16 @@ export default function Programs({ isSubscribed }) {
 
         {/* Subscription CTA */}
         {!isSubscribed && (
-          <div className="mt-20 p-12 md:p-16 bg-gradient-to-br from-surface-2 to-surface rounded-[3rem] border border-white/10 text-center relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-[80px]" />
-            <div className="relative z-10 max-w-[600px] mx-auto">
-              <div className="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-8 shadow-sm">🔓</div>
-              <h3 className="font-heading text-3xl md:text-5xl font-black mb-6">Unlock All {programs.filter(p => p.isPro).length} Pro Programs</h3>
-              <p className="text-soft text-lg leading-relaxed mb-10">Get unlimited access to every training video, drill, and coaching session. Join the elite elite league of successful players today.</p>
-              <Link to="/pricing" className="inline-flex items-center gap-4 bg-accent text-black px-10 py-5 rounded-2xl font-heading font-black text-xl shadow-glow hover:bg-white hover:-translate-y-1 transition-all" id="programs-unlock-cta">
-                <Zap size={22} fill="currentColor" />
+          <div className="mt-12 p-8 md:p-10 bg-gradient-to-br from-surface-2 to-surface rounded-3xl border border-white/10 text-center relative overflow-hidden group max-w-4xl mx-auto">
+            <div className="absolute top-0 right-0 w-48 h-48 bg-accent/5 rounded-full blur-[60px]" />
+            <div className="relative z-10 max-w-[500px] mx-auto">
+              <div className="w-12 h-12 bg-gold/10 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm">🔓</div>
+              <h3 className="font-heading text-2xl md:text-3xl font-black mb-3">Unlock All {programs.filter(p => p.isPro).length} Pro Programs</h3>
+              <p className="text-soft text-base leading-relaxed mb-6">Get unlimited access to every training video, drill, and coaching session. Join the elite league of successful players today.</p>
+              <button onClick={onSubscribe} className="inline-flex items-center gap-3 bg-accent text-black px-6 py-3 rounded-xl font-heading font-black text-base shadow-glow hover:bg-white hover:-translate-y-1 transition-all cursor-pointer" id="programs-unlock-cta">
+                <Zap size={18} fill="currentColor" />
                 Start Free Trial
-              </Link>
+              </button>
             </div>
           </div>
         )}
@@ -263,7 +146,7 @@ export default function Programs({ isSubscribed }) {
   )
 }
 
-function ProgramCard({ program, isSubscribed, locked }) {
+function ProgramCard({ program, isSubscribed, locked, onSubscribe }) {
   const { id, title, coach, level, duration, videos, rating, reviews, emoji, description, color, dimColor } = program
 
   return (
@@ -321,10 +204,10 @@ function ProgramCard({ program, isSubscribed, locked }) {
         
         <div className="mt-auto">
           {locked ? (
-            <Link to="/pricing" className="w-full py-4 bg-gold/10 border border-gold/20 text-gold rounded-2xl flex items-center justify-center gap-2 font-heading font-black text-sm tracking-wide transition-all hover:bg-gold hover:text-black shadow-gold/20 hover:shadow-gold" id={`unlock-${id}`}>
+            <button onClick={onSubscribe} className="w-full py-4 bg-gold/10 border border-gold/20 text-gold rounded-2xl flex items-center justify-center gap-2 font-heading font-black text-sm tracking-wide transition-all hover:bg-gold hover:text-black shadow-gold/20 hover:shadow-gold cursor-pointer" id={`unlock-${id}`}>
               <Lock size={16} />
               UNLOCK PROGRAM
-            </Link>
+            </button>
           ) : (
             <Link to={`/programs/${id}`} className="w-full py-4 bg-white/5 hover:bg-accent hover:text-black rounded-2xl flex items-center justify-center gap-2 font-heading font-black text-sm tracking-wide transition-all group/btn" id={`watch-${id}`}>
               <Play size={16} fill="currentColor" className="group-hover/btn:fill-black" />
