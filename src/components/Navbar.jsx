@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Menu, X, Zap, User, LogOut, ChevronDown } from 'lucide-react'
 
-export default function Navbar({ isSubscribed, user, onLogout }) {
+export default function Navbar({ isSubscribed, user, onLogout, onSubscribe }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
@@ -21,7 +21,7 @@ export default function Navbar({ isSubscribed, user, onLogout }) {
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-bg/90 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="container mx-auto px-6 flex items-center justify-between relative min-h-[40px]">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group" onClick={() => setMenuOpen(false)}>
           <div className="w-10 h-10 bg-surface-2 border border-white/10 rounded-xl flex items-center justify-center text-xl shadow-card transition-all duration-500 group-hover:border-accent group-hover:shadow-glow group-hover:scale-105">
@@ -31,11 +31,10 @@ export default function Navbar({ isSubscribed, user, onLogout }) {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8">
           <NavLink to="/" end className={navLinkClass}>Home</NavLink>
           <NavLink to="/programs" className={navLinkClass}>Programs</NavLink>
           <NavLink to="/coaches" className={navLinkClass}>Coaches</NavLink>
-          <NavLink to="/pricing" className={navLinkClass}>Pricing</NavLink>
         </nav>
 
         {/* Desktop Actions */}
@@ -65,11 +64,11 @@ export default function Navbar({ isSubscribed, user, onLogout }) {
             </div>
           ) : (
             <>
-              <Link to="/pricing" className="text-sm font-bold text-soft hover:text-white px-4 py-2 transition-all">Sign In</Link>
-              <Link to="/pricing" className="flex items-center gap-2 bg-accent text-black px-5 py-2 rounded-xl font-heading font-bold text-sm shadow-glow hover:bg-white transition-all hover:-translate-y-0.5" id="nav-subscribe">
+              <button onClick={onSubscribe} className="text-sm font-bold text-soft hover:text-white px-4 py-2 transition-all cursor-pointer">Sign In</button>
+              <button onClick={onSubscribe} className="flex items-center gap-2 bg-accent text-black px-5 py-2 rounded-xl font-heading font-bold text-sm shadow-glow hover:bg-white transition-all hover:-translate-y-0.5 cursor-pointer" id="nav-subscribe">
                 <Zap size={14} fill="currentColor" />
                 Subscribe
-              </Link>
+              </button>
             </>
           )}
         </div>
@@ -91,17 +90,16 @@ export default function Navbar({ isSubscribed, user, onLogout }) {
           <NavLink to="/" end onClick={() => setMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
           <NavLink to="/programs" onClick={() => setMenuOpen(false)} className={mobileNavLinkClass}>Programs</NavLink>
           <NavLink to="/coaches" onClick={() => setMenuOpen(false)} className={mobileNavLinkClass}>Coaches</NavLink>
-          <NavLink to="/pricing" onClick={() => setMenuOpen(false)} className={mobileNavLinkClass}>Pricing</NavLink>
         </nav>
         <div className="mt-auto flex flex-col gap-4 pb-8">
           {isSubscribed ? (
-            <button onClick={() => { onLogout(); setMenuOpen(false) }} className="w-full flex items-center justify-center gap-3 py-4 border border-white/10 rounded-2xl text-soft font-bold">
+            <button onClick={() => { onLogout(); setMenuOpen(false) }} className="w-full flex items-center justify-center gap-3 py-4 border border-white/10 rounded-2xl text-soft font-bold cursor-pointer">
               <LogOut size={18} /> Sign Out
             </button>
           ) : (
-            <Link to="/pricing" onClick={() => setMenuOpen(false)} className="w-full flex items-center justify-center gap-3 py-4 bg-accent text-black rounded-2xl font-heading font-black text-xl shadow-glow">
+            <button onClick={() => { onSubscribe(); setMenuOpen(false) }} className="w-full flex items-center justify-center gap-3 py-4 bg-accent text-black rounded-2xl font-heading font-black text-xl shadow-glow cursor-pointer">
               <Zap size={22} fill="currentColor" /> Get Started
-            </Link>
+            </button>
           )}
         </div>
       </div>
