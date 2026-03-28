@@ -64,7 +64,7 @@ const testimonials = [
   },
 ]
 
-export default function Home({ isSubscribed }) {
+export default function Home({ isSubscribed, onSubscribe }) {
   return (
     <main className="min-h-screen animate-fadeIn bg-bg">
       {/* ── HERO ── */}
@@ -99,11 +99,11 @@ export default function Home({ isSubscribed }) {
                 </Link>
               ) : (
                 <>
-                  <Link to="/pricing" className="group flex items-center justify-center gap-3 bg-accent text-black px-8 py-4 rounded-2xl font-heading font-black text-lg shadow-glow hover:bg-white transition-all hover:-translate-y-1">
+                  <button onClick={onSubscribe} className="group flex items-center justify-center gap-3 bg-accent text-black px-8 py-4 rounded-2xl font-heading font-black text-lg shadow-glow hover:bg-white transition-all hover:-translate-y-1 cursor-pointer w-full sm:w-auto">
                     <Zap size={20} fill="currentColor" />
                     Start Free Trial
-                  </Link>
-                  <Link to="/programs" className="flex items-center justify-center gap-3 border border-white/10 hover:border-white/30 px-8 py-4 rounded-2xl font-heading font-bold text-lg text-white transition-all">
+                  </button>
+                  <Link to="/programs" className="flex items-center justify-center gap-3 border border-white/10 hover:border-white/30 px-8 py-4 rounded-2xl font-heading font-bold text-lg text-white transition-all w-full sm:w-auto">
                     Browse Programs
                     <ArrowRight size={20} className="group-hover:translate-x-1" />
                   </Link>
@@ -167,7 +167,7 @@ export default function Home({ isSubscribed }) {
       </section>
 
       {/* ── STATS BAR ── */}
-      <section className="border-y border-white/5 bg-surface/30 backdrop-blur-sm">
+      <section className="bg-surface/30 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-10 flex flex-wrap justify-center md:justify-between items-center gap-8">
           {stats.map(({ icon: Icon, value, label }) => (
             <div key={label} className="flex items-center gap-4 min-w-[160px]">
@@ -230,9 +230,9 @@ export default function Home({ isSubscribed }) {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { emoji: '🎯', title: 'Finishing Masterclass', coach: 'Coach Barca', level: 'Advanced', videos: 12, locked: !isSubscribed, banner: 'from-gold/20' },
-              { emoji: '🦵', title: 'Dribbling Technique', coach: 'Coach Torres', level: 'Intermediate', videos: 8, locked: !isSubscribed, banner: 'from-accent/20' },
-              { emoji: '🧠', title: 'Football IQ & Vision', coach: 'Coach Silva', level: 'All Levels', videos: 10, locked: !isSubscribed, banner: 'from-blue-500/20' },
+              { emoji: '🎯', title: 'Finishing Masterclass', coach: 'Coach Barca', level: 'Advanced', videos: 12, locked: false, banner: 'from-gold/20' },
+              { emoji: '🦵', title: 'Dribbling Technique', coach: 'Coach Torres', level: 'Intermediate', videos: 8, locked: false, banner: 'from-accent/20' },
+              { emoji: '🧠', title: 'Football IQ & Vision', coach: 'Coach Silva', level: 'All Levels', videos: 10, locked: false, banner: 'from-blue-500/20' },
             ].map(({ emoji, title, coach, level, videos, locked, banner }) => (
               <div key={title} className="group bg-surface rounded-[2rem] border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:shadow-card">
                 <div className={`h-48 relative flex items-center justify-center text-6xl bg-gradient-to-br ${banner} to-transparent overflow-hidden`}>
@@ -257,12 +257,15 @@ export default function Home({ isSubscribed }) {
                   </div>
                   <h3 className="font-heading text-xl font-black mb-1 group-hover:text-accent transition-colors">{title}</h3>
                   <p className="text-sm text-soft mb-8">with {coach}</p>
-                  <Link
-                    to={locked ? '/pricing' : '/programs'}
-                    className={`w-full py-4 rounded-2xl flex items-center justify-center gap-2 font-heading font-black text-sm tracking-wide transition-all ${locked ? 'border border-white/10 text-white hover:bg-white/5' : 'bg-accent text-black hover:bg-white shadow-glow'}`}
-                  >
-                    {locked ? '🔓 UNLOCK NOW' : '▶ WATCH NOW'}
-                  </Link>
+                  {locked ? (
+                    <button onClick={onSubscribe} className="w-full py-4 rounded-2xl flex items-center justify-center gap-2 font-heading font-black text-sm tracking-wide transition-all border border-white/10 text-white hover:bg-white/5 cursor-pointer">
+                      🔓 UNLOCK NOW
+                    </button>
+                  ) : (
+                    <Link to="/programs" className="w-full py-4 rounded-2xl flex items-center justify-center gap-2 font-heading font-black text-sm tracking-wide transition-all bg-accent text-black hover:bg-white shadow-glow">
+                      ▶ WATCH NOW
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
@@ -303,26 +306,7 @@ export default function Home({ isSubscribed }) {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
-      {!isSubscribed && (
-        <section className="py-24 px-6">
-          <div className="container mx-auto bg-gradient-to-br from-accent to-[#00b25a] p-12 md:p-20 rounded-[3rem] relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-white/20 rounded-full blur-[80px] -mr-40 -mt-40 animate-pulse" />
-            <div className="absolute bottom-0 left-0 w-60 h-60 bg-black/10 rounded-full blur-[60px] -ml-30 -mb-30" />
-            
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 text-black">
-              <div className="text-center lg:text-left">
-                <h2 className="font-heading text-4xl md:text-6xl font-black leading-tight mb-6">Ready to Dominate the Pitch?</h2>
-                <p className="text-xl font-medium opacity-80 max-w-[600px]">Join thousands of players making real progress. Start your free 7-day trial today.</p>
-              </div>
-              <Link to="/pricing" className="flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-heading font-black text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all">
-                <Zap size={28} fill="currentColor" />
-                Get Access
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+
     </main>
   )
 }
