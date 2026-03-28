@@ -94,10 +94,6 @@ export default function Coaches() {
       <section className="relative overflow-hidden mb-16">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-3 mb-4 mx-auto">
-            <div className="w-8 h-[2px] bg-accent" />
-            <span className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">The Team</span>
-          </div>
           <h1 className="font-heading text-4xl md:text-6xl font-black mb-6">
             World-Class <span className="text-accent">Coaches</span>
           </h1>
@@ -112,7 +108,7 @@ export default function Coaches() {
           {coaches.map(coach => (
             <div key={coach.id} className="group bg-surface rounded-[2.5rem] border border-white/5 p-8 transition-all duration-500 hover:border-white/15 hover:shadow-card flex flex-col items-center text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-10 transition-opacity group-hover:opacity-20" style={{ backgroundColor: coach.color }} />
-              
+
               <div className="w-24 h-24 rounded-3xl mb-6 relative flex items-center justify-center text-5xl shadow-card transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: coach.dimColor }}>
                 <span className="select-none">{coach.emoji}</span>
                 <span className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-surface-2 border-2 border-surface flex items-center justify-center text-sm shadow-sm">{coach.country}</span>
