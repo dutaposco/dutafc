@@ -77,7 +77,6 @@ export default function Home({ isSubscribed, onSubscribe }) {
         <div className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center gap-16">
           <div className="lg:w-[55%] animate-fadeInUp">
             <div className="inline-flex items-center gap-3 mb-6">
-              <div className="w-8 h-[2px] bg-accent" />
               <span className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-accent">⚡ The #1 Football Training Platform</span>
             </div>
             
@@ -167,12 +166,11 @@ export default function Home({ isSubscribed, onSubscribe }) {
       {/* ── FEATURES ── */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 max-w-[700px] mx-auto">
+          <div className="text-center mb-16 max-w-[800px] mx-auto">
             <div className="inline-flex items-center gap-3 mb-4">
-              <div className="w-6 h-[1.5px] bg-accent" />
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Why EliteFC?</span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-black mb-6">Everything You Need to <span className="text-accent">Level Up</span></h2>
+            <h2 className="font-heading text-4xl md:text-5xl font-black mb-6">Everything You Need to <span className="text-accent whitespace-nowrap">Level Up</span></h2>
             <p className="text-soft leading-relaxed">
               A complete football training ecosystem built for players who are serious about improving.
             </p>
@@ -199,7 +197,6 @@ export default function Home({ isSubscribed, onSubscribe }) {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
             <div>
               <div className="inline-flex items-center gap-3 mb-4">
-                <div className="w-6 h-[1.5px] bg-accent" />
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Featured Programs</span>
               </div>
               <h2 className="font-heading text-4xl md:text-5xl font-black">Popular <span className="text-accent text-mid">Training Series</span></h2>
@@ -259,7 +256,6 @@ export default function Home({ isSubscribed, onSubscribe }) {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 mb-4">
-              <div className="w-6 h-[1.5px] bg-accent" />
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Success Stories</span>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl font-black">What Players <span className="text-accent">Are Saying</span></h2>
