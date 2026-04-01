@@ -27,7 +27,7 @@ export default function Navbar({ isSubscribed, user, onLogout, onSubscribe }) {
           <div className="w-10 h-10 bg-surface-2 border border-white/10 rounded-xl flex items-center justify-center text-xl shadow-card transition-all duration-500 group-hover:border-accent group-hover:shadow-glow group-hover:scale-105">
             <span>⚽</span>
           </div>
-          <span className="font-heading text-lg font-black tracking-tight group-hover:text-accent transition-colors">Elite<span className="text-accent">FC</span></span>
+          <span className="font-heading text-lg font-black tracking-tight group-hover:text-accent transition-colors">B<span className="text-accent">PRO</span></span>
         </Link>
 
         {/* Desktop Nav */}
