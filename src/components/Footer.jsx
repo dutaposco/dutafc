@@ -7,7 +7,7 @@ export default function Footer() {
         
         {/* Logo block */}
         <div className="w-[50px] h-[50px] bg-[#dc2626] text-white flex items-center justify-center font-heading font-black italic text-lg tracking-tighter">
-          BPRO
+          bpro
         </div>
 
         {/* Text Details */}
