@@ -7,13 +7,13 @@ export default function Footer() {
         
         {/* Logo block */}
         <div className="w-[50px] h-[50px] bg-[#dc2626] text-white flex items-center justify-center font-heading font-black italic text-lg tracking-tighter">
-          EFC
+          BPRO
         </div>
 
         {/* Text Details */}
         <div className="flex flex-col items-center gap-3 text-sm font-medium text-white/80">
-          <p>EliteFC training</p>
-          <p>contact: info@elitefctraining.com</p>
+          <p>BPRO training</p>
+          <p>contact: info@bprotraining.com</p>
         </div>
 
         {/* Social Icons */}
