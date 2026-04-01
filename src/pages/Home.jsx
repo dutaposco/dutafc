@@ -168,7 +168,7 @@ export default function Home({ isSubscribed, onSubscribe }) {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 max-w-[800px] mx-auto">
             <div className="inline-flex items-center gap-3 mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Why EliteFC?</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Why BPRO?</span>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl font-black mb-6">Everything You Need to <span className="text-accent whitespace-nowrap">Level Up</span></h2>
             <p className="text-soft leading-relaxed">
